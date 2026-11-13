@@ -29,26 +29,26 @@ export const FinalCTA = () => {
         </div>
 
         <h2 className="cta-headline">
-          You Don't Have to Face Everything Alone.
+          You Don't Have to Figure Everything Out Alone.
         </h2>
 
         <p className="cta-description">
-          Whether you need a listening ear at 2 AM or words of courage for a new journey, thousands of caring peers are waiting to walk with you.
+          Whatever situation you're facing, share what's on your mind and connect with people who may be able to help.
         </p>
 
         <div className="cta-buttons-row">
           <button className="btn-primary cta-btn-primary" onClick={handleJoinClick}>
-            <span>{isLoggedIn ? 'Share Another Story' : 'Join Silent Help'}</span>
+            <span>Ask for Help</span>
             <ArrowRight size={17} />
           </button>
           <button className="btn-secondary cta-btn-secondary" onClick={handleExploreClick}>
-            <span>Explore Discussions</span>
+            <span>Explore Community</span>
           </button>
         </div>
 
         <div className="cta-reassurance">
           <Shield size={14} className="purple-text" />
-          <span>Always Free • 100% Anonymous • Non-Judgmental</span>
+          <span>Open Support • Optional Anonymous Identity • Empathetic Community</span>
         </div>
       </div>
     </section>

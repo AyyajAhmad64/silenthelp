@@ -8,8 +8,7 @@
   border-radius: var(--radius-xl);
   padding: 1rem 0.65rem;
   box-shadow: var(--shadow-sm);
-  height: calc(100vh - var(--header-height) - 2.5rem);
-  overflow-y: auto;
+  min-height: min-content;
 }
 
 .left-sidebar-nav.collapsed {
@@ -311,6 +310,54 @@
 
 :root[data-theme='light'] .drawer-nav-item:hover,
 :root[data-theme='light'] .drawer-nav-item.active {
+  color: var(--purple-700);
+}
+
+/* Drawer Preferences */
+.drawer-preferences-section {
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  margin: 0.5rem 0 0.85rem;
+}
+
+.preferences-header {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.preferences-buttons-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.drawer-pref-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.65rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.drawer-pref-btn:hover {
+  background-color: var(--bg-hover);
+  color: var(--purple-400);
+  border-color: var(--purple-500);
+}
+
+:root[data-theme='light'] .drawer-pref-btn:hover {
   color: var(--purple-700);
 }
 

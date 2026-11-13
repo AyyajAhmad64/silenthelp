@@ -23,11 +23,11 @@ export const Footer = () => {
               </span>
             </a>
             <p className="footer-mission-statement">
-              A peer-supported, judgment-free space designed to give voice to feelings that often remain in the shadows.
+              An open community support platform to ask for guidance, share life situations, and connect with peers who can help.
             </p>
             <div className="footer-safe-badge">
               <Shield size={14} className="purple-text" />
-              <span>Strictly Anonymous & Protected</span>
+              <span>Open Help Community • Optional Anonymous Posting</span>
             </div>
           </div>
 

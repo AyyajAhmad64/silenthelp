@@ -1,17 +1,25 @@
 import React from 'react';
-import { X, HeartHandshake, Shield, PhoneCall } from 'lucide-react';
+import { X, HeartHandshake, Shield, PhoneCall, Sun, Moon, Globe, Settings } from 'lucide-react';
 import { NAV_ITEMS } from './LeftSidebar';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 import './Sidebar.css';
 
-export const MobileDrawer = ({ isOpen, onClose, activeItem = 'home', onItemClick }) => {
+export const MobileDrawer = ({ isOpen, onClose, activeItem = 'home', onItemClick, onOpenSettings }) => {
   const { isLoggedIn, user, openAuthModal, logout } = useAuth();
+  const { isDark, toggleTheme } = useTheme();
+  const { currentLanguage } = useLanguage();
 
   if (!isOpen) return null;
 
   const handleNavClick = (item) => {
     onClose();
     if (onItemClick) onItemClick(item.id);
+    if (item.id === 'settings') {
+      if (onOpenSettings) onOpenSettings();
+      return;
+    }
     if (item.targetId) {
       if (item.targetId === 'top') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -54,7 +62,7 @@ export const MobileDrawer = ({ isOpen, onClose, activeItem = 'home', onItemClick
             </div>
           ) : (
             <div className="drawer-visitor-box">
-              <p className="visitor-text">Join our community to share your voice safely.</p>
+              <p className="visitor-text">Join our community to ask for help or support others.</p>
               <div className="visitor-btns">
                 <button
                   className="btn-ghost"
@@ -72,7 +80,7 @@ export const MobileDrawer = ({ isOpen, onClose, activeItem = 'home', onItemClick
                     openAuthModal('register');
                   }}
                 >
-                  Register
+                  Ask for Help
                 </button>
               </div>
             </div>
@@ -97,6 +105,35 @@ export const MobileDrawer = ({ isOpen, onClose, activeItem = 'home', onItemClick
             );
           })}
         </nav>
+
+        {/* Preferences Section: Theme & Language */}
+        <div className="drawer-preferences-section">
+          <div className="preferences-header">Preferences</div>
+          <div className="preferences-buttons-row">
+            <button
+              type="button"
+              className="drawer-pref-btn"
+              onClick={toggleTheme}
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {isDark ? <Sun size={17} className="purple-text" /> : <Moon size={17} className="purple-text" />}
+              <span>{isDark ? 'Light' : 'Dark'}</span>
+            </button>
+
+            <button
+              type="button"
+              className="drawer-pref-btn"
+              onClick={() => {
+                onClose();
+                if (onOpenSettings) onOpenSettings();
+              }}
+              aria-label="Language & Settings"
+            >
+              <Globe size={17} className="purple-text" />
+              <span>{currentLanguage.label}</span>
+            </button>
+          </div>
+        </div>
 
         {/* Emergency Help Quick Link */}
         <div className="drawer-helpline-box">

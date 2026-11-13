@@ -13,9 +13,9 @@ export const COMMUNITY_STATS = {
   isMockData: true,
   disclaimer: 'Frontend UI Demo Data',
   metrics: [
-    { label: 'Anonymous Stories', value: '18,400+', icon: 'ShieldAlert', description: 'Safely shared voices' },
+    { label: 'Help Requests Shared', value: '18,400+', icon: 'ShieldAlert', description: 'Real community situations' },
     { label: 'Words of Support', value: '94,200+', icon: 'Heart', description: 'Empathetic responses' },
-    { label: 'Active Listeners', value: '2,800+', icon: 'Users', description: 'Available peer supporters' },
+    { label: 'Active Supporters', value: '2,800+', icon: 'Users', description: 'Peers ready to help' },
     { label: 'Safe Moderation', value: '99.8%', icon: 'ShieldCheck', description: 'Respectful atmosphere' },
   ],
 };
@@ -78,20 +78,20 @@ export const MOCK_NOTIFICATIONS = [
 export const HOW_IT_WORKS_STEPS = [
   {
     step: '01',
-    title: 'Share Anonymously',
-    description: 'Post your deepest thoughts, struggles, or questions without exposing your real identity or face.',
+    title: 'Ask for Any Help',
+    description: 'Ask for help with personal, emotional, career, tech, or daily situations. Post publicly or anonymously whenever you prefer.',
     iconName: 'Shield',
   },
   {
     step: '02',
-    title: 'Receive Genuine Empathy',
-    description: 'Get warm, non-judgmental support, practical advice, and encouragement from peers who truly understand.',
+    title: 'Receive Real Advice & Empathy',
+    description: 'Get warm, non-judgmental guidance, practical solutions, and encouragement from peers and community members.',
     iconName: 'Heart',
   },
   {
     step: '03',
-    title: 'Heal & Grow Together',
-    description: 'Track your emotional journey, save helpful wisdom, and discover that you were never alone in the quiet.',
+    title: 'Overcome & Grow Together',
+    description: 'Learn from shared experiences, bookmark helpful answers, and discover that you never have to face life alone.',
     iconName: 'Sparkles',
   },
 ];
@@ -103,8 +103,8 @@ export const COMMUNITY_GUIDELINES_SUMMARY = [
     iconName: 'Smile',
   },
   {
-    title: 'Strict Anonymity',
-    description: 'Never reveal your own or another member’s phone numbers, emails, addresses, or identifying details.',
+    title: 'Privacy & Identity Choice',
+    description: 'Choose between public and anonymous posting on any post. Never share another member private contacts or dox anyone.',
     iconName: 'Lock',
   },
   {

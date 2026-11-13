@@ -15,6 +15,7 @@ import { FinalCTA } from './components/sections/FinalCTA';
 import { RightSidebar } from './components/widgets/RightSidebar';
 import { Footer } from './components/footer/Footer';
 import { AuthModal } from './components/header/AuthModal';
+import { SettingsModal } from './components/common/SettingsModal';
 import { Plus, ArrowUp, CheckCircle, Info } from 'lucide-react';
 
 export const App = () => {
@@ -24,6 +25,8 @@ export const App = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   // Mobile drawer open state
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  // Settings modal open state
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   // Active navigation section
   const [activeNav, setActiveNav] = useState('home');
   // Selected category filter
@@ -62,6 +65,7 @@ export const App = () => {
       <Header
         onToggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
         onOpenMobileDrawer={() => setIsDrawerOpen(true)}
+        onOpenSettings={() => setIsSettingsOpen(true)}
         onSelectCategory={(catName) => setSelectedCategory(catName)}
         onSelectTopic={(topicTag) => {
           const el = document.getElementById('feed-section');
@@ -78,6 +82,7 @@ export const App = () => {
             onToggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
             activeItem={activeNav}
             onItemClick={setActiveNav}
+            onOpenSettings={() => setIsSettingsOpen(true)}
           />
         </div>
 
@@ -191,6 +196,7 @@ export const App = () => {
         onClose={() => setIsDrawerOpen(false)}
         activeItem={activeNav}
         onItemClick={setActiveNav}
+        onOpenSettings={() => setIsSettingsOpen(true)}
       />
 
       {/* Mobile Bottom Navigation (Home, Explore, Create, Notifications, Profile) */}
@@ -199,6 +205,12 @@ export const App = () => {
         onNavClick={setActiveNav}
         onOpenDrawer={() => setIsDrawerOpen(true)}
         onCreatePostClick={handleCreatePostTrigger}
+      />
+
+      {/* Global Settings & Preferences Modal */}
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
       />
 
       {/* Global Auth Modal for Login/Registration */}

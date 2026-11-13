@@ -27,9 +27,13 @@ export const NAV_ITEMS = [
   { id: 'settings', label: 'Settings', icon: Settings, badge: null, targetId: null },
 ];
 
-export const LeftSidebar = ({ isCollapsed, onToggleCollapse, activeItem = 'home', onItemClick }) => {
+export const LeftSidebar = ({ isCollapsed, onToggleCollapse, activeItem = 'home', onItemClick, onOpenSettings }) => {
   const handleNavClick = (item) => {
     if (onItemClick) onItemClick(item.id);
+    if (item.id === 'settings') {
+      if (onOpenSettings) onOpenSettings();
+      return;
+    }
     if (item.targetId) {
       if (item.targetId === 'top') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -87,9 +91,9 @@ export const LeftSidebar = ({ isCollapsed, onToggleCollapse, activeItem = 'home'
           <div className="privacy-badge-icon">
             <ShieldCheck size={20} className="purple-text" />
           </div>
-          <h4 className="privacy-card-title">Safe & Protected</h4>
+          <h4 className="privacy-card-title">Help & Support Community</h4>
           <p className="privacy-card-text">
-            Your identity remains anonymous on all discussions. You are safe here.
+            Ask for any help. Choose public or anonymous identity on every post.
           </p>
         </div>
       )}

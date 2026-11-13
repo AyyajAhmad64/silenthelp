@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import { Menu, HeartHandshake, Search, X } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { SearchBar } from './SearchBar';
-import { LanguageSelector } from './LanguageSelector';
-import { ThemeToggle } from './ThemeToggle';
 import { NotificationsDropdown } from './NotificationsDropdown';
 import { ProfileDropdown } from './ProfileDropdown';
 import './Header.css';
 
-export const Header = ({ onToggleSidebar, onOpenMobileDrawer, onSelectCategory, onSelectTopic }) => {
+export const Header = ({
+  onToggleSidebar,
+  onOpenMobileDrawer,
+  onSelectCategory,
+  onSelectTopic,
+  onOpenSettings,
+}) => {
   const { isLoggedIn, openAuthModal } = useAuth();
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
 
@@ -33,7 +37,7 @@ export const Header = ({ onToggleSidebar, onOpenMobileDrawer, onSelectCategory, 
               <span className="brand-title">
                 Silent <span className="purple-gradient-text">Help</span>
               </span>
-              <span className="brand-tagline">Safe • Anonymous • Heard</span>
+              <span className="brand-tagline">Open Support • Safe Space</span>
             </div>
           </a>
         </div>
@@ -55,13 +59,10 @@ export const Header = ({ onToggleSidebar, onOpenMobileDrawer, onSelectCategory, 
             {isMobileSearchOpen ? <X size={18} /> : <Search size={18} />}
           </button>
 
-          <LanguageSelector />
-          <ThemeToggle />
-
           {isLoggedIn ? (
             <div className="logged-in-actions">
               <NotificationsDropdown />
-              <ProfileDropdown />
+              <ProfileDropdown onOpenSettings={onOpenSettings} />
             </div>
           ) : (
             <div className="visitor-actions">
@@ -75,7 +76,8 @@ export const Header = ({ onToggleSidebar, onOpenMobileDrawer, onSelectCategory, 
                 className="btn-primary register-btn"
                 onClick={() => openAuthModal('register')}
               >
-                Get Started
+                <span className="btn-full-text">Ask for Help</span>
+                <span className="btn-short-text">Ask Help</span>
               </button>
             </div>
           )}

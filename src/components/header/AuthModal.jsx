@@ -39,7 +39,7 @@ export const AuthModal = () => {
 
         <div className="privacy-guarantee-card">
           <Lock size={15} className="purple-text" />
-          <span>Strict Anonymity Guaranteed: Your real details are never displayed.</span>
+          <span>Identity Choice: Post publicly or anonymously on any discussion whenever you prefer.</span>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">

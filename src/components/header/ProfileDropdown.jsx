@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { User, Bookmark, Settings, LogOut, Shield, FileText, ChevronDown } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
-export const ProfileDropdown = () => {
+export const ProfileDropdown = ({ onOpenSettings }) => {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -64,9 +64,15 @@ export const ProfileDropdown = () => {
               <Bookmark size={16} />
               <span>Saved Posts ({user.savedCount})</span>
             </button>
-            <button className="menu-action-item" onClick={() => setIsOpen(false)}>
+            <button
+              className="menu-action-item"
+              onClick={() => {
+                setIsOpen(false);
+                if (onOpenSettings) onOpenSettings();
+              }}
+            >
               <Settings size={16} />
-              <span>Account Settings</span>
+              <span>Settings & Preferences</span>
             </button>
           </div>
 

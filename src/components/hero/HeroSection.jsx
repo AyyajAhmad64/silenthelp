@@ -31,20 +31,20 @@ export const HeroSection = ({ onShareStoryClick, onExploreClick }) => {
         <div className="hero-content">
           <div className="hero-trust-badge">
             <ShieldCheck size={16} className="purple-text" />
-            <span>100% Anonymous & Judgment-Free Support</span>
+            <span>Help & Support Community • Optional Anonymous Identity</span>
           </div>
 
           <h1 className="hero-headline">
-            You Are <span className="purple-gradient-text">Not Alone.</span>
+            You Don't Have to Figure Everything Out <span className="purple-gradient-text">Alone.</span>
           </h1>
 
           <p className="hero-description">
-            Your feelings matter. Your voice deserves to be heard. Connect with compassionate peers who listen without judgment.
+            Whatever situation you're facing, share what's on your mind and connect with people who may be able to help.
           </p>
 
           <div className="hero-actions">
             <button className="btn-primary hero-btn-main" onClick={handleShareClick}>
-              <span>Share Your Story</span>
+              <span>Ask for Help</span>
               <ArrowRight size={17} />
             </button>
             <button className="btn-secondary hero-btn-sub" onClick={handleExploreClick}>
@@ -55,17 +55,17 @@ export const HeroSection = ({ onShareStoryClick, onExploreClick }) => {
           <div className="hero-stats-mini">
             <div className="mini-stat-item">
               <span className="mini-stat-val">18,400+</span>
-              <span className="mini-stat-lbl">Anonymous Stories</span>
+              <span className="mini-stat-lbl">People Helped</span>
             </div>
             <div className="mini-stat-divider" />
             <div className="mini-stat-item">
               <span className="mini-stat-val">24/7</span>
-              <span className="mini-stat-lbl">Safe Space</span>
+              <span className="mini-stat-lbl">Open Support</span>
             </div>
             <div className="mini-stat-divider" />
             <div className="mini-stat-item">
-              <span className="mini-stat-val">Zero</span>
-              <span className="mini-stat-lbl">Identity Exposure</span>
+              <span className="mini-stat-val">Flexible</span>
+              <span className="mini-stat-lbl">Public or Anonymous</span>
             </div>
           </div>
         </div>

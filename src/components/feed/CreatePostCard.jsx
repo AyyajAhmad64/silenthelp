@@ -21,9 +21,9 @@ export const CreatePostCard = ({ onPostCreated }) => {
             <MessageSquareHeart size={24} className="purple-text" />
           </div>
           <div className="visitor-text-group">
-            <h3 className="visitor-card-title">Have something heavy on your mind?</h3>
+            <h3 className="visitor-card-title">Need guidance, advice, or support with a situation?</h3>
             <p className="visitor-card-desc">
-              Join Silent Help to share your story completely anonymously, receive peer comfort, and connect with people who care.
+              Silent Help is an open community where you can ask for any kind of help—personal, emotional, career, tech, or daily life. Choose to post with your public name or anonymously whenever you prefer.
             </p>
           </div>
           <div className="visitor-card-actions">
@@ -31,7 +31,7 @@ export const CreatePostCard = ({ onPostCreated }) => {
               Log In
             </button>
             <button className="btn-primary" onClick={() => openAuthModal('register')}>
-              Join to Share
+              Ask for Help
             </button>
           </div>
         </div>
@@ -56,13 +56,13 @@ export const CreatePostCard = ({ onPostCreated }) => {
       categorySlug: CATEGORIES.find(c => c.name === category)?.slug || 'general-discussion',
       createdAt: 'Just now',
       timestamp: new Date().toISOString(),
-      title: title.trim() || 'A reflection from the heart',
+      title: title.trim() || 'Help request from community member',
       content: content.trim(),
       supportCount: 1,
       commentCount: 0,
       isSupported: true,
       isSaved: false,
-      tags: ['PersonalStory', 'CommunitySupport'],
+      tags: ['HelpNeeded', 'CommunitySupport'],
       feedType: ['all', 'latest'],
       commentsPreview: [],
     };
@@ -74,7 +74,7 @@ export const CreatePostCard = ({ onPostCreated }) => {
     setContent('');
     setTitle('');
     setIsExpanded(false);
-    showToast('Your story was safely shared to the community feed!', 'success');
+    showToast('Your help request has been shared with the community!', 'success');
   };
 
   return (
@@ -90,7 +90,7 @@ export const CreatePostCard = ({ onPostCreated }) => {
               <input
                 type="text"
                 className="composer-collapsed-trigger"
-                placeholder="What's on your mind? Share your thoughts safely..."
+                placeholder="What do you need help with? Share your situation or ask a question..."
                 onFocus={() => setIsExpanded(true)}
                 readOnly
               />
@@ -99,13 +99,13 @@ export const CreatePostCard = ({ onPostCreated }) => {
                 <input
                   type="text"
                   className="composer-title-input"
-                  placeholder="Give your story a gentle title (optional)..."
+                  placeholder="Summary or question title (optional)..."
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <textarea
                   className="composer-content-textarea"
-                  placeholder="Write freely. Your voice is respected and protected here..."
+                  placeholder="Describe your situation in detail. Whatever challenge or question you have, the community is here to help..."
                   rows={4}
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
@@ -134,7 +134,7 @@ export const CreatePostCard = ({ onPostCreated }) => {
                 ))}
               </select>
 
-              {/* Anonymity Toggle */}
+              {/* Anonymity Selector */}
               <button
                 type="button"
                 className={`anonymity-toggle-chip ${isAnonymous ? 'active-anon' : ''}`}
@@ -142,7 +142,7 @@ export const CreatePostCard = ({ onPostCreated }) => {
                 title="Toggle between Anonymous and Public author identity"
               >
                 {isAnonymous ? <Lock size={13} /> : <Globe size={13} />}
-                <span>{isAnonymous ? 'Anonymous' : 'Public Name'}</span>
+                <span>{isAnonymous ? 'Post: Anonymous' : `Post: Public (${user.name})`}</span>
               </button>
             </div>
 
@@ -166,7 +166,7 @@ export const CreatePostCard = ({ onPostCreated }) => {
                 disabled={!content.trim()}
               >
                 <Send size={15} />
-                <span>Share Story</span>
+                <span>Submit Help Request</span>
               </button>
             </div>
           </div>
