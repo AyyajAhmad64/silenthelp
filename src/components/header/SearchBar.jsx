@@ -5,10 +5,17 @@ import { MOCK_POSTS } from '../../data/mockPosts';
 import { TRENDING_TOPICS } from '../../data/mockWidgets';
 import './Header.css';
 
-export const SearchBar = ({ onSelectCategory, onSelectTopic }) => {
+export const SearchBar = ({ onSelectCategory, onSelectTopic, autoFocus = false, onClose }) => {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (autoFocus && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [autoFocus]);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -23,6 +30,7 @@ export const SearchBar = ({ onSelectCategory, onSelectTopic }) => {
   const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
+      if (onClose) onClose();
     }
   };
 
@@ -46,6 +54,7 @@ export const SearchBar = ({ onSelectCategory, onSelectTopic }) => {
       <div className="search-input-wrapper">
         <Search className="search-icon" size={18} />
         <input
+          ref={inputRef}
           type="text"
           placeholder="Search topics, feelings, questions..."
           value={query}
@@ -57,7 +66,7 @@ export const SearchBar = ({ onSelectCategory, onSelectTopic }) => {
           onKeyDown={handleKeyDown}
           aria-label="Search community posts and topics"
         />
-        {query && (
+        {query ? (
           <button
             className="search-clear-btn"
             onClick={() => setQuery('')}
@@ -65,7 +74,15 @@ export const SearchBar = ({ onSelectCategory, onSelectTopic }) => {
           >
             <X size={15} />
           </button>
-        )}
+        ) : onClose ? (
+          <button
+            className="search-clear-btn mobile-close-search"
+            onClick={onClose}
+            aria-label="Close search"
+          >
+            <X size={16} />
+          </button>
+        ) : null}
       </div>
 
       {isOpen && (
@@ -81,6 +98,7 @@ export const SearchBar = ({ onSelectCategory, onSelectTopic }) => {
                     onClick={() => {
                       setQuery(item.tag);
                       setIsOpen(false);
+                      if (onClose) onClose();
                       if (onSelectTopic) onSelectTopic(item.tag);
                     }}
                   >
@@ -101,6 +119,7 @@ export const SearchBar = ({ onSelectCategory, onSelectTopic }) => {
                       className="search-result-item"
                       onClick={() => {
                         setIsOpen(false);
+                        if (onClose) onClose();
                         if (onSelectCategory) onSelectCategory(cat.name);
                       }}
                     >
@@ -123,6 +142,7 @@ export const SearchBar = ({ onSelectCategory, onSelectTopic }) => {
                       className="search-result-item"
                       onClick={() => {
                         setIsOpen(false);
+                        if (onClose) onClose();
                         const el = document.getElementById(post.id);
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
                       }}

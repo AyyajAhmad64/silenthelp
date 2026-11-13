@@ -98,6 +98,7 @@
   font-weight: 700;
   line-height: 1.35;
   margin-bottom: 0.5rem;
+  overflow-wrap: break-word;
 }
 
 .trending-snippet {
@@ -106,6 +107,7 @@
   line-height: 1.5;
   margin-bottom: 1.25rem;
   flex: 1;
+  overflow-wrap: break-word;
 }
 
 .trending-footer {
@@ -267,6 +269,7 @@
   font-weight: 600;
   color: var(--text-secondary);
   justify-content: center;
+  text-align: center;
 }
 
 /* 9. Final CTA */
@@ -354,6 +357,7 @@
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-tertiary);
+  text-align: center;
 }
 
 /* Responsive */
@@ -367,10 +371,38 @@
 }
 
 @media (max-width: 600px) {
+  .trending-cards-grid {
+    grid-template-columns: 1fr;
+  }
   .cta-headline {
-    font-size: 1.7rem;
+    font-size: 1.75rem;
   }
   .final-cta-section {
-    padding: 2.25rem 1.25rem;
+    padding: 2.25rem 1rem;
+    margin: 2rem 0;
+  }
+  .cta-buttons-row {
+    flex-direction: column;
+    width: 100%;
+  }
+  .cta-btn-primary, .cta-btn-secondary {
+    width: 100%;
+  }
+  .how-it-works-section {
+    padding: 1.75rem 1rem;
+    margin: 2rem 0;
+  }
+  .guidelines-section {
+    padding: 1.75rem 1rem;
+    margin: 2rem 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .cta-headline {
+    font-size: 1.5rem;
+  }
+  .section-heading {
+    font-size: 1.4rem;
   }
 }

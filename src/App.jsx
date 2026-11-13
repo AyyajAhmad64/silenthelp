@@ -33,7 +33,7 @@ export const App = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
+      setShowScrollTop(window.scrollY > 350);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -108,6 +108,21 @@ export const App = () => {
             }}
           />
 
+          {/* Repositioned Widgets (Active for <= 1280px Laptop, Tablet & Mobile) */}
+          <div className="feed-repositioned-widgets">
+            <RightSidebar
+              onTopicClick={(topic) => {
+                const el = document.getElementById('feed-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              onCategoryClick={(catName) => {
+                setSelectedCategory(catName);
+                const el = document.getElementById('feed-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
+          </div>
+
           {/* 5. Explore Categories */}
           <CategoryExplorer
             selectedCategory={selectedCategory}
@@ -127,7 +142,7 @@ export const App = () => {
           <FinalCTA />
         </main>
 
-        {/* Right Column: Widgets */}
+        {/* Right Column: Widgets (Active on desktop > 1280px) */}
         <div className="widgets-column">
           <RightSidebar
             onTopicClick={(topic) => {
@@ -159,6 +174,7 @@ export const App = () => {
           </button>
         )}
 
+        {/* Desktop / Tablet floating create button (hidden on mobile to prevent bottom nav overlap) */}
         <button
           className="floating-btn primary-create"
           onClick={handleCreatePostTrigger}
@@ -169,7 +185,7 @@ export const App = () => {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Navigation Drawer */}
       <MobileDrawer
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
@@ -177,7 +193,7 @@ export const App = () => {
         onItemClick={setActiveNav}
       />
 
-      {/* Mobile Bottom Navigation */}
+      {/* Mobile Bottom Navigation (Home, Explore, Create, Notifications, Profile) */}
       <BottomNav
         activeItem={activeNav}
         onNavClick={setActiveNav}

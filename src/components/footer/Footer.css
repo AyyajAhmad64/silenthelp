@@ -171,12 +171,20 @@
   }
 }
 
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 2.5rem 0 calc(var(--bottom-nav-height) + 2rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 @media (max-width: 600px) {
   .footer-top-grid {
     grid-template-columns: 1fr;
+    gap: 1.75rem;
   }
   .footer-bottom-bar {
     flex-direction: column;
     text-align: center;
+    gap: 0.75rem;
   }
 }

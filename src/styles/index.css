@@ -34,8 +34,8 @@ body {
 
 /* Custom Sleek Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -73,25 +73,28 @@ button {
 
 input, textarea, select {
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
 }
 
-/* Common App Layout */
+/* App Container */
 .app-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: var(--bg-app);
+  overflow-x: hidden;
 }
 
+/* Main Layout Grid & Spacing */
 .main-layout-wrapper {
   max-width: var(--max-content-width);
   margin: 0 auto;
   width: 100%;
   display: flex;
-  padding: 0 1rem;
+  padding: 0 1.25rem;
   gap: 1.5rem;
   flex: 1;
+  min-width: 0;
 }
 
 /* Left Sidebar Area */
@@ -117,10 +120,10 @@ input, textarea, select {
 .feed-column {
   flex: 1;
   min-width: 0;
-  padding: 1.25rem 0 4rem;
+  padding: 1.25rem 0 3.5rem;
 }
 
-/* Right Sidebar Area */
+/* Right Sidebar Area (Desktop sticky) */
 .widgets-column {
   width: var(--right-sidebar-width);
   flex-shrink: 0;
@@ -131,6 +134,18 @@ input, textarea, select {
   padding: 1.25rem 0 3rem;
   display: flex;
   flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Repositioned Widgets Container (Laptop <= 1280px, Tablet, Mobile) */
+.feed-repositioned-widgets {
+  display: none;
+  margin: 2.5rem 0 2rem;
+}
+
+.feed-repositioned-widgets .right-widgets-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.25rem;
 }
 
@@ -153,7 +168,7 @@ input, textarea, select {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.25rem;
+  padding: 0.6rem 1.2rem;
   background: var(--primary-gradient);
   color: #ffffff;
   font-weight: 600;
@@ -161,6 +176,7 @@ input, textarea, select {
   box-shadow: var(--shadow-purple);
   transition: transform var(--transition-fast), opacity var(--transition-fast), box-shadow var(--transition-fast);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -179,13 +195,14 @@ input, textarea, select {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.25rem;
+  padding: 0.6rem 1.2rem;
   background-color: var(--bg-secondary);
   color: var(--text-primary);
   font-weight: 600;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
   transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
 }
 
 .btn-secondary:hover {
@@ -200,11 +217,12 @@ input, textarea, select {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.55rem 0.9rem;
+  padding: 0.55rem 0.85rem;
   background: transparent;
   color: var(--text-secondary);
   border-radius: var(--radius-md);
   transition: background-color var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
 }
 
 .btn-ghost:hover {
@@ -221,22 +239,23 @@ input, textarea, select {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.85rem 1.25rem;
+  padding: 0.8rem 1.2rem;
   background-color: var(--bg-elevated);
   color: var(--text-primary);
   border: 1px solid var(--purple-500);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
   animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 90vw;
 }
 
 /* Floating Action Controls */
 .floating-actions {
   position: fixed;
-  bottom: 5.5rem;
-  right: 1.5rem;
+  bottom: 2.25rem;
+  right: 2rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -244,8 +263,8 @@ input, textarea, select {
 }
 
 .floating-btn {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
@@ -254,7 +273,7 @@ input, textarea, select {
   color: var(--text-primary);
   border: 1px solid var(--border-medium);
   box-shadow: var(--shadow-md);
-  transition: transform var(--transition-fast), background-color var(--transition-fast);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .floating-btn:hover {
@@ -268,43 +287,121 @@ input, textarea, select {
   color: #ffffff;
   border: none;
   box-shadow: var(--shadow-purple);
-  width: 54px;
-  height: 54px;
+  width: 52px;
+  height: 52px;
 }
 
 .floating-btn.primary-create:hover {
   transform: translateY(-3px) scale(1.05);
 }
 
-/* Responsive Breakpoints */
-@media (max-width: 1200px) {
+/* ========================================================
+   RESPONSIVE BREAKPOINTS: 1920, 1600, 1440, 1366, 1280, 1024, 768, 430, 360
+   ======================================================== */
+
+/* 1440px & 1366px Laptop Adjustments */
+@media (max-width: 1440px) {
+  .main-layout-wrapper {
+    gap: 1.15rem;
+    padding: 0 1rem;
+  }
+  .sidebar-column.expanded {
+    width: 220px;
+  }
   .widgets-column {
-    width: 280px;
+    width: 275px;
   }
 }
 
-@media (max-width: 1024px) {
+/* 1366px (14-inch Laptop Optimization) */
+@media (max-width: 1366px) {
+  .main-layout-wrapper {
+    gap: 1rem;
+    padding: 0 0.85rem;
+  }
+  .sidebar-column.expanded {
+    width: 210px;
+  }
+  .sidebar-column.collapsed {
+    width: 68px;
+  }
   .widgets-column {
-    display: none; /* Relocated into feed sections on tablet */
+    width: 260px;
+  }
+}
+
+/* <= 1280px (Prioritize Feed Readability over cramped 3-columns) */
+@media (max-width: 1280px) {
+  .widgets-column {
+    display: none; /* Relocate widgets below feed */
+  }
+  .feed-repositioned-widgets {
+    display: block;
+  }
+  .sidebar-column.expanded {
+    width: 215px;
+  }
+  .main-layout-wrapper {
+    gap: 1.25rem;
+    padding: 0 1rem;
+  }
+}
+
+/* 1024px (Tablet Landscape / Compact Laptop) */
+@media (max-width: 1024px) {
+  .sidebar-column.expanded {
+    width: 200px;
   }
   .main-layout-wrapper {
     gap: 1rem;
-    padding: 0 0.75rem;
+    padding: 0 0.85rem;
   }
 }
 
+/* Tablet Portrait & Mobile (<= 768px) */
 @media (max-width: 768px) {
   .sidebar-column {
-    display: none; /* Managed by mobile drawer & bottom nav */
+    display: none; /* Managed by mobile drawer and bottom navigation */
   }
-  .feed-column {
-    padding: 0.75rem 0 5.5rem;
+  .widgets-column {
+    display: none;
+  }
+  .feed-repositioned-widgets {
+    display: block;
+    margin: 2rem 0;
   }
   .main-layout-wrapper {
-    padding: 0 0.5rem;
+    padding: 0 0.65rem;
+  }
+  .feed-column {
+    padding: 0.65rem 0 calc(var(--bottom-nav-height) + 2rem + env(safe-area-inset-bottom, 0px));
+  }
+  /* On mobile, center bottom nav button creates posts; hide duplicate floating button */
+  .floating-btn.primary-create {
+    display: none;
+  }
+  /* Scroll-to-top button rests above the bottom navigation bar with safe spacing */
+  .floating-actions {
+    bottom: calc(var(--bottom-nav-height) + 1.25rem + env(safe-area-inset-bottom, 0px));
+    right: 1.25rem;
+  }
+  .toast-banner {
+    bottom: calc(var(--bottom-nav-height) + 1.5rem + env(safe-area-inset-bottom, 0px));
+    right: 1rem;
+    left: 1rem;
+    justify-content: center;
+  }
+}
+
+/* Mobile Screens (<= 430px down to 360px) */
+@media (max-width: 430px) {
+  .main-layout-wrapper {
+    padding: 0 0.45rem;
+  }
+  .feed-repositioned-widgets .right-widgets-container {
+    grid-template-columns: 1fr;
   }
   .floating-actions {
-    bottom: 5rem;
-    right: 1rem;
+    right: 0.85rem;
   }
 }

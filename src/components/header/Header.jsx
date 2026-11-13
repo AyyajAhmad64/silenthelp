@@ -1,5 +1,5 @@
-import React from 'react';
-import { Menu, HeartHandshake, Shield, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, HeartHandshake, Search, X } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { SearchBar } from './SearchBar';
 import { LanguageSelector } from './LanguageSelector';
@@ -9,12 +9,13 @@ import { ProfileDropdown } from './ProfileDropdown';
 import './Header.css';
 
 export const Header = ({ onToggleSidebar, onOpenMobileDrawer, onSelectCategory, onSelectTopic }) => {
-  const { isLoggedIn, openAuthModal, toggleAuthMode } = useAuth();
+  const { isLoggedIn, openAuthModal } = useAuth();
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
 
   return (
     <header className="site-header">
       <div className="header-inner">
-        {/* Left: Mobile Menu & Brand */}
+        {/* Left: Mobile Menu Trigger & Brand Logo */}
         <div className="header-left">
           <button
             className="mobile-menu-trigger"
@@ -37,21 +38,21 @@ export const Header = ({ onToggleSidebar, onOpenMobileDrawer, onSelectCategory, 
           </a>
         </div>
 
-        {/* Center: Search Bar */}
+        {/* Center: Desktop Search Bar */}
         <div className="header-center">
           <SearchBar onSelectCategory={onSelectCategory} onSelectTopic={onSelectTopic} />
         </div>
 
         {/* Right: Actions */}
         <div className="header-right">
-          {/* Demo Mode Switcher - Allows instant switching between visitor and logged-in states */}
+          {/* Mobile Search Toggle Icon */}
           <button
-            className="demo-mode-chip"
-            onClick={toggleAuthMode}
-            title="Click to toggle between Visitor and Member view for testing"
+            className="header-icon-btn mobile-search-toggle"
+            onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)}
+            aria-label={isMobileSearchOpen ? 'Close search' : 'Open search'}
+            title="Search topics"
           >
-            <Sparkles size={13} className="purple-text" />
-            <span>Mode: {isLoggedIn ? 'Member' : 'Visitor'}</span>
+            {isMobileSearchOpen ? <X size={18} /> : <Search size={18} />}
           </button>
 
           <LanguageSelector />
@@ -80,6 +81,24 @@ export const Header = ({ onToggleSidebar, onOpenMobileDrawer, onSelectCategory, 
           )}
         </div>
       </div>
+
+      {/* Expandable Mobile Search Dropdown/Banner */}
+      {isMobileSearchOpen && (
+        <div className="mobile-search-banner animate-slide-down">
+          <SearchBar
+            autoFocus
+            onClose={() => setIsMobileSearchOpen(false)}
+            onSelectCategory={(cat) => {
+              setIsMobileSearchOpen(false);
+              onSelectCategory(cat);
+            }}
+            onSelectTopic={(topic) => {
+              setIsMobileSearchOpen(false);
+              onSelectTopic(topic);
+            }}
+          />
+        </div>
+      )}
     </header>
   );
 };

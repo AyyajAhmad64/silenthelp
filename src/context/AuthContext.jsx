@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  // Visitor mode by default as per requirement to show visitor state
+  // Visitor mode by default
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState('login'); // 'login' | 'register'
@@ -40,20 +40,12 @@ export const AuthProvider = ({ children }) => {
   const login = () => {
     setIsLoggedIn(true);
     closeAuthModal();
-    showToast('Signed in successfully as ' + mockUser.name + ' (Demo)', 'success');
+    showToast('Signed in successfully as ' + mockUser.name, 'success');
   };
 
   const logout = () => {
     setIsLoggedIn(false);
     showToast('Signed out. Viewing as visitor.', 'info');
-  };
-
-  const toggleAuthMode = () => {
-    if (isLoggedIn) {
-      logout();
-    } else {
-      login();
-    }
   };
 
   return (
@@ -63,7 +55,6 @@ export const AuthProvider = ({ children }) => {
         user: isLoggedIn ? mockUser : null,
         login,
         logout,
-        toggleAuthMode,
         isAuthModalOpen,
         authModalMode,
         openAuthModal,
