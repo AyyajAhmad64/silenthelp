@@ -1,0 +1,253 @@
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  padding: 2.25rem 2.5rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+  background-image: radial-gradient(circle at 85% 20%, rgba(147, 51, 234, 0.08) 0%, transparent 60%);
+}
+
+.hero-split-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.hero-content {
+  flex: 1.2;
+  max-width: 580px;
+}
+
+.hero-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  background-color: var(--primary-soft);
+  border: 1px solid var(--primary-border);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--purple-400);
+  margin-bottom: 1.25rem;
+}
+
+:root[data-theme='light'] .hero-trust-badge {
+  color: var(--purple-700);
+}
+
+.hero-headline {
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.hero-btn-main {
+  font-size: 0.95rem;
+  padding: 0.75rem 1.6rem;
+}
+
+.hero-btn-sub {
+  font-size: 0.95rem;
+  padding: 0.75rem 1.4rem;
+}
+
+.hero-stats-mini {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.mini-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-stat-val {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.mini-stat-lbl {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+}
+
+.mini-stat-divider {
+  width: 1px;
+  height: 28px;
+  background-color: var(--border-medium);
+}
+
+/* 3D Illustration Area */
+.hero-visual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 280px;
+}
+
+.hero-illustration-wrapper {
+  position: relative;
+  width: 320px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.illustration-ambient-glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.35) 0%, rgba(107, 33, 168, 0.05) 70%, transparent 100%);
+  border-radius: var(--radius-full);
+  filter: blur(28px);
+}
+
+.floating-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sphere-outer {
+  width: 130px;
+  height: 130px;
+  border-radius: var(--radius-full);
+  background: var(--primary-gradient);
+  padding: 4px;
+  box-shadow: 0 0 45px rgba(147, 51, 234, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.sphere-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle at 35% 35%, #9333ea, #4c1d95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: inset 0 2px 12px rgba(255, 255, 255, 0.3);
+}
+
+.core-icon {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+/* Orbiting Satellites */
+.satellite {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-md);
+  font-size: 0.78rem;
+  font-weight: 600;
+  z-index: 3;
+}
+
+.sat-icon {
+  color: var(--purple-400);
+}
+
+:root[data-theme='light'] .sat-icon {
+  color: var(--purple-700);
+}
+
+.sat-1 {
+  top: 25px;
+  right: 15px;
+}
+
+.sat-2 {
+  bottom: 30px;
+  left: 10px;
+}
+
+.sat-3 {
+  bottom: 25px;
+  right: 25px;
+}
+
+.orbit-rings-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero-section {
+    padding: 1.75rem 1.5rem;
+  }
+  .hero-split-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .hero-content {
+    max-width: 100%;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-stats-mini {
+    justify-content: center;
+  }
+  .hero-headline {
+    font-size: 2.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-headline {
+    font-size: 1.8rem;
+  }
+  .hero-stats-mini {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .mini-stat-divider {
+    display: none;
+  }
+  .hero-visual {
+    transform: scale(0.85);
+  }
+}

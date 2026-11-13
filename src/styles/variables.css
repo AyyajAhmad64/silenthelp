@@ -1,0 +1,109 @@
+/* Design Tokens for Silent Help: Purple theme, Dark Charcoal & Off-White Light */
+:root {
+  /* Font Family */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Purple Color Palette (Strictly Purple - NO blue or yellow accents) */
+  --purple-50: #faf5ff;
+  --purple-100: #f3e8ff;
+  --purple-200: #e9d5ff;
+  --purple-300: #d8b4fe;
+  --purple-400: #c084fc;
+  --purple-500: #a855f7;
+  --purple-600: #9333ea;
+  --purple-700: #7e22ce;
+  --purple-800: #6b21a8;
+  --purple-900: #581c87;
+
+  /* Primary Accent Mappings */
+  --primary: #9333ea;
+  --primary-hover: #7e22ce;
+  --primary-active: #6b21a8;
+  --primary-soft: rgba(147, 51, 234, 0.12);
+  --primary-border: rgba(147, 51, 234, 0.28);
+  --primary-gradient: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+  --primary-gradient-subtle: linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(126, 34, 206, 0.04) 100%);
+
+  /* Neutral Accent for Danger/Support */
+  --danger: #e11d48;
+  --danger-soft: rgba(225, 29, 72, 0.1);
+  --success: #10b981;
+  --success-soft: rgba(16, 185, 129, 0.1);
+
+  /* Border Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout dimensions */
+  --header-height: 68px;
+  --sidebar-expanded-width: 260px;
+  --sidebar-collapsed-width: 76px;
+  --right-sidebar-width: 320px;
+  --max-content-width: 1400px;
+  --bottom-nav-height: 64px;
+}
+
+/* Dark Theme (Default) - Charcoal / Near-black */
+:root[data-theme='dark'] {
+  --bg-app: #0d0d12;
+  --bg-primary: #121218;
+  --bg-secondary: #181822;
+  --bg-tertiary: #20202c;
+  --bg-elevated: #242432;
+  --bg-hover: #292938;
+
+  --text-primary: #f4f4f7;
+  --text-secondary: #a0a0b2;
+  --text-tertiary: #717184;
+  --text-on-primary: #ffffff;
+
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  --border-active: rgba(168, 85, 247, 0.45);
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.55);
+  --shadow-purple: 0 10px 30px -4px rgba(147, 51, 234, 0.28);
+
+  --badge-bg: rgba(255, 255, 255, 0.06);
+  --input-bg: #161620;
+  --dropdown-bg: #181824;
+}
+
+/* Light Theme - Off-white */
+:root[data-theme='light'] {
+  --bg-app: #f7f7fa;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f3f8;
+  --bg-tertiary: #e9e9f1;
+  --bg-elevated: #ffffff;
+  --bg-hover: #eeeeee;
+
+  --text-primary: #141419;
+  --text-secondary: #58586a;
+  --text-tertiary: #848496;
+  --text-on-primary: #ffffff;
+
+  --border-subtle: rgba(0, 0, 0, 0.07);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --border-active: rgba(147, 51, 234, 0.45);
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.12);
+  --shadow-purple: 0 10px 28px -4px rgba(147, 51, 234, 0.2);
+
+  --badge-bg: rgba(0, 0, 0, 0.04);
+  --input-bg: #f9f9fc;
+  --dropdown-bg: #ffffff;
+}

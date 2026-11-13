@@ -1,0 +1,131 @@
+.categories-section {
+  margin: 2.5rem 0 2rem;
+}
+
+.section-header-row {
+  margin-bottom: 1.5rem;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple-400);
+  margin-bottom: 0.25rem;
+}
+
+:root[data-theme='light'] .section-eyebrow {
+  color: var(--purple-700);
+}
+
+.section-heading {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+}
+
+.section-subtext {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 640px;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.category-card {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border-radius: var(--radius-lg);
+  position: relative;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--purple-500);
+  box-shadow: var(--shadow-md);
+}
+
+.category-card.selected {
+  border-color: var(--purple-500);
+  background: var(--primary-gradient-subtle);
+  box-shadow: 0 0 0 2px var(--purple-500);
+}
+
+.category-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.category-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--primary-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-post-count {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  background-color: var(--bg-secondary);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+}
+
+.category-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.category-desc {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.category-card-footer {
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.explore-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--purple-400);
+  transition: gap var(--transition-fast);
+}
+
+:root[data-theme='light'] .explore-link {
+  color: var(--purple-700);
+}
+
+.category-card:hover .explore-link {
+  gap: 0.6rem;
+}
+
+@media (max-width: 600px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+}
