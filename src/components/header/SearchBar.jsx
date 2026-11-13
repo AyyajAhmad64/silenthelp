@@ -30,12 +30,16 @@ export const SearchBar = ({ onSelectCategory, onSelectTopic, autoFocus = false, 
   const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
+      if (inputRef.current) inputRef.current.blur();
       if (onClose) onClose();
     }
   };
 
   const filteredCategories = query.trim()
-    ? CATEGORIES.filter(c => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3)
+    ? CATEGORIES.filter(c =>
+        c.name.toLowerCase().includes(query.toLowerCase()) ||
+        c.description.toLowerCase().includes(query.toLowerCase())
+      ).slice(0, 3)
     : [];
 
   const filteredTopics = query.trim()
@@ -45,7 +49,8 @@ export const SearchBar = ({ onSelectCategory, onSelectTopic, autoFocus = false, 
   const filteredPosts = query.trim()
     ? MOCK_POSTS.filter(p =>
         p.title.toLowerCase().includes(query.toLowerCase()) ||
-        p.content.toLowerCase().includes(query.toLowerCase())
+        p.content.toLowerCase().includes(query.toLowerCase()) ||
+        (p.tags && p.tags.some(t => t.toLowerCase().includes(query.toLowerCase())))
       ).slice(0, 3)
     : [];
 

@@ -22,7 +22,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  overflow-x: hidden;
   transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
@@ -87,7 +86,7 @@ input, textarea, select {
   display: flex;
   flex-direction: column;
   background-color: var(--bg-app);
-  overflow-x: hidden;
+  overflow: visible;
 }
 
 /* Main Layout Grid & Spacing */
@@ -96,6 +95,7 @@ input, textarea, select {
   margin: 0 auto;
   width: 100%;
   display: flex;
+  align-items: flex-start;
   padding: 0 1.25rem;
   gap: 1.5rem;
   flex: 1;
@@ -303,10 +303,10 @@ input, textarea, select {
 }
 
 /* ========================================================
-   RESPONSIVE BREAKPOINTS: 1920, 1600, 1440, 1366, 1280, 1024, 768, 430, 360
+   RESPONSIVE BREAKPOINTS: 1920, 1600, 1440, 1366, 1280, 1024, 912, 820, 768, 430, 390, 375, 360, 320
    ======================================================== */
 
-/* 1440px & 1366px Laptop Adjustments */
+/* 1440px Laptop Adjustments */
 @media (max-width: 1440px) {
   .main-layout-wrapper {
     gap: 1.15rem;
@@ -327,7 +327,7 @@ input, textarea, select {
     padding: 0 0.85rem;
   }
   .sidebar-column.expanded {
-    width: 210px;
+    width: 205px;
   }
   .sidebar-column.collapsed {
     width: 68px;
@@ -337,31 +337,54 @@ input, textarea, select {
   }
 }
 
-/* <= 1280px (Prioritize Feed Readability over cramped 3-columns) */
+/* 1280px Desktop / Laptop (Maintains Stable 3-Column Layout) */
 @media (max-width: 1280px) {
+  .main-layout-wrapper {
+    gap: 0.95rem;
+    padding: 0 0.85rem;
+  }
+  .sidebar-column.expanded {
+    width: 195px;
+  }
+  .sidebar-column.collapsed {
+    width: 64px;
+  }
   .widgets-column {
-    display: none; /* Relocate widgets below feed */
+    width: 250px;
+  }
+}
+
+/* 1024px Compact Desktop (Maintains Stable 3-Column Layout) */
+@media (max-width: 1024px) {
+  .main-layout-wrapper {
+    gap: 0.85rem;
+    padding: 0 0.75rem;
+  }
+  .sidebar-column.expanded {
+    width: 180px;
+  }
+  .sidebar-column.collapsed {
+    width: 60px;
+  }
+  .widgets-column {
+    width: 235px;
+  }
+}
+
+/* Tablet (<= 912px down to 769px: Relocates widgets below feed) */
+@media (max-width: 912px) {
+  .widgets-column {
+    display: none;
   }
   .feed-repositioned-widgets {
     display: block;
   }
   .sidebar-column.expanded {
-    width: 215px;
-  }
-  .main-layout-wrapper {
-    gap: 1.25rem;
-    padding: 0 1rem;
-  }
-}
-
-/* 1024px (Tablet Landscape / Compact Laptop) */
-@media (max-width: 1024px) {
-  .sidebar-column.expanded {
-    width: 200px;
+    width: 190px;
   }
   .main-layout-wrapper {
     gap: 1rem;
-    padding: 0 0.85rem;
+    padding: 0 0.75rem;
   }
 }
 
@@ -400,7 +423,7 @@ input, textarea, select {
   }
 }
 
-/* Mobile Screens (<= 430px down to 360px) */
+/* Mobile Screens (<= 430px down to 320px) */
 @media (max-width: 430px) {
   .main-layout-wrapper {
     padding: 0 0.45rem;
@@ -410,5 +433,23 @@ input, textarea, select {
   }
   .floating-actions {
     right: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .main-layout-wrapper {
+    padding: 0 0.35rem;
+  }
+  .floating-actions {
+    right: 0.65rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .main-layout-wrapper {
+    padding: 0 0.25rem;
+  }
+  .floating-actions {
+    right: 0.5rem;
   }
 }

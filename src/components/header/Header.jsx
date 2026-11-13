@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, HeartHandshake, Search, X } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { SearchBar } from './SearchBar';
+import { MobileSearchModal } from './MobileSearchModal';
 import { NotificationsDropdown } from './NotificationsDropdown';
 import { ProfileDropdown } from './ProfileDropdown';
 import './Header.css';
@@ -42,21 +43,21 @@ export const Header = ({
           </a>
         </div>
 
-        {/* Center: Desktop Search Bar */}
+        {/* Center: Desktop Search Bar (Single Search Interface on Desktop) */}
         <div className="header-center">
           <SearchBar onSelectCategory={onSelectCategory} onSelectTopic={onSelectTopic} />
         </div>
 
         {/* Right: Actions */}
         <div className="header-right">
-          {/* Mobile Search Toggle Icon */}
+          {/* Mobile Search Toggle Icon (Only visible on mobile screens <= 768px) */}
           <button
             className="header-icon-btn mobile-search-toggle"
-            onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)}
-            aria-label={isMobileSearchOpen ? 'Close search' : 'Open search'}
+            onClick={() => setIsMobileSearchOpen(true)}
+            aria-label="Open search view"
             title="Search topics"
           >
-            {isMobileSearchOpen ? <X size={18} /> : <Search size={18} />}
+            <Search size={18} />
           </button>
 
           {isLoggedIn ? (
@@ -84,23 +85,19 @@ export const Header = ({
         </div>
       </div>
 
-      {/* Expandable Mobile Search Dropdown/Banner */}
-      {isMobileSearchOpen && (
-        <div className="mobile-search-banner animate-slide-down">
-          <SearchBar
-            autoFocus
-            onClose={() => setIsMobileSearchOpen(false)}
-            onSelectCategory={(cat) => {
-              setIsMobileSearchOpen(false);
-              onSelectCategory(cat);
-            }}
-            onSelectTopic={(topic) => {
-              setIsMobileSearchOpen(false);
-              onSelectTopic(topic);
-            }}
-          />
-        </div>
-      )}
+      {/* Dedicated Full-Screen Mobile Search View */}
+      <MobileSearchModal
+        isOpen={isMobileSearchOpen}
+        onClose={() => setIsMobileSearchOpen(false)}
+        onSelectCategory={(cat) => {
+          setIsMobileSearchOpen(false);
+          if (onSelectCategory) onSelectCategory(cat);
+        }}
+        onSelectTopic={(topic) => {
+          setIsMobileSearchOpen(false);
+          if (onSelectTopic) onSelectTopic(topic);
+        }}
+      />
     </header>
   );
 };
